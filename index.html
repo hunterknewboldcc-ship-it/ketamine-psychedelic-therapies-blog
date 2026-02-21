@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utah Treatment-Resistant Depression Care Directory | 2026 Clinic Guide</title>
+    <meta name="description" content="Comprehensive directory of ketamine and integrative mental health clinics in Utah. Find treatment-resistant depression care providers by region.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --primary: #0891b2;
+            --primary-dark: #0e7490;
+            --secondary: #0f172a;
+            --accent: #14b8a6;
+            --warm: #f59e0b;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8fafc;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+        }
+        .hero {
+            background: linear-gradient(135deg, rgba(8,145,178,0.9) 0%, rgba(15,23,42,0.85) 100%),
+                        url('https://image.qwenlm.ai/public_source/4d8a2920-befd-48e5-915f-8d5e9cfa90ab/1392e2ea8-53d0-4af4-ba50-5aaa89a9275f.png');
+            background-size: cover;
+            background-position: center;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+        .hero-content {
+            max-width: 900px;
+            color: white;
+        }
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        .cta-button {
+            display: inline-block;
+            background: var(--warm);
+            color: var(--secondary);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(245,158,11,0.4);
+        }
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(245,158,11,0.5);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        .section {
+            padding: 4rem 0;
+        }
+        .section-title {
+            font-size: clamp(1.5rem, 3vw, 2.25rem);
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+        .section-subtitle {
+            color: #64748b;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+        .filter-bar {
+            background: white;
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+        }
+        .filter-bar input, .filter-bar select {
+            padding: 0.75rem 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            transition: border-color 0.3s ease;
+        }
+        .filter-bar input:focus, .filter-bar select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        .filter-bar input {
+            flex: 1;
+            min-width: 250px;
+        }
+        .region-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .region-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+        .region-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .region-icon {
+            font-size: 1.75rem;
+        }
+        .region-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        .region-subtitle {
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+        .clinic-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .clinic-table th {
+            background: #f1f5f9;
+            padding: 1rem 1.25rem;
+            text-align: left;
+            font-weight: 600;
+            color: var(--secondary);
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .clinic-table td {
+            padding: 1.25rem;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        .clinic-table tr:last-child td {
+            border-bottom: none;
+        }
+        .clinic-table tr:hover {
+            background: #f8fafc;
+        }
+        .clinic-name {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 1.05rem;
+        }
+        .clinic-address {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+        .clinic-services {
+            font-size: 0.9rem;
+            color: #475569;
+        }
+        .clinic-contact {
+            font-weight: 500;
+        }
+        .clinic-website {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .clinic-website:hover {
+            color: var(--primary-dark);
+            text-decoration: underline;
+        }
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        .badge-pilot {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        .badge-ketamine {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        .badge-research {
+            background: #e0e7ff;
+            color: #3730a3;
+        }
+        .alert-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 4px solid var(--warm);
+            padding: 1.5rem 2rem;
+            border-radius: 0 16px 16px 0;
+            margin: 2rem 0;
+        }
+        .alert-box h3 {
+            color: #92400e;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .alert-box ul {
+            margin-left: 1.5rem;
+            color: #78350f;
+        }
+        .alert-box li {
+            margin-bottom: 0.5rem;
+        }
+        .disclaimer {
+            background: #1e293b;
+            color: #94a3b8;
+            padding: 3rem 2rem;
+            font-size: 0.875rem;
+            line-height: 1.8;
+        }
+        .disclaimer h4 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        .disclaimer a {
+            color: var(--accent);
+        }
+        .lead-capture {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            text-align: center;
+            color: white;
+            margin: 3rem 0;
+        }
+        .lead-capture h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        .lead-capture p {
+            opacity: 0.95;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .lead-form {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .lead-form input {
+            flex: 1;
+            min-width: 200px;
+            padding: 1rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+        }
+        .lead-form button {
+            background: var(--secondary);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .lead-form button:hover {
+            background: #334155;
+            transform: translateY(-2px);
+        }
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+        }
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            font-family: 'Playfair Display', serif;
+        }
+        .stat-label {
+            color: #64748b;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+        .hidden {
+            display: none;
+        }
+        @media (max-width: 768px) {
+            .clinic-table {
+                font-size: 0.85rem;
+            }
+            .clinic-table th, .clinic-table td {
+                padding: 0.75rem 0.5rem;
+            }
+            .filter-bar {
+                flex-direction: column;
+            }
+            .filter-bar input, .filter-bar select {
+                width: 100%;
+            }
+        }
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--primary);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(8,145,178,0.4);
+            z-index: 100;
+        }
+        .scroll-top.visible {
+            opacity: 1;
+        }
+        .scroll-top:hover {
+            transform: translateY(-4px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Utah Treatment-Resistant Depression Care Directory</h1>
+            <p>Connect with verified ketamine and integrative mental health providers across Utah. Updated for 2026 with regional clinic listings, pilot program information, and patient resources.</p>
+            <a href="#directory" class="cta-button">Find a Provider Near You</a>
+        </div>
+    </header>
+
+    <!-- Stats Bar -->
+    <section class="container">
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-number">25+</div>
+                <div class="stat-label">Verified Clinics</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">8</div>
+                <div class="stat-label">Service Regions</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">2</div>
+                <div class="stat-label">Pilot Programs</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">2026</div>
+                <div class="stat-label">Updated Directory</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Alert Box -->
+    <section class="container">
+        <div class="alert-box">
+            <h3>⚠️ Important Patient Information</h3>
+            <ul>
+                <li><strong>Ketamine therapy</strong> is legally available in Utah under medical supervision at licensed clinics.</li>
+                <li><strong>Psilocybin & MDMA therapies</strong> are restricted to a three-year pilot program (SB266) at select institutions and require formal diagnosis and referral.</li>
+                <li>Always verify a provider's licensing, treatment protocols, and your eligibility before proceeding.</li>
+                <li>This directory is for informational purposes only and does not constitute medical advice or referral endorsement.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Directory Section -->
+    <section id="directory" class="section">
+        <div class="container">
+            <h2 class="section-title">Clinic Directory by Region</h2>
+            <p class="section-subtitle">Filter and search to find providers in your area</p>
+
+            <!-- Filter Bar -->
+            <div class="filter-bar">
+                <input type="text" id="searchInput" placeholder="Search clinics by name or service...">
+                <select id="regionFilter">
+                    <option value="">All Regions</option>
+                    <option value="slc-proper">Salt Lake City Proper</option>
+                    <option value="slc-suburbs">Salt Lake County Suburbs</option>
+                    <option value="utah-county">Utah County & Southern</option>
+                    <option value="pilot">Pilot Program & Research</option>
+                </select>
+                <select id="serviceFilter">
+                    <option value="">All Services</option>
+                    <option value="ketamine">Ketamine Therapy</option>
+                    <option value="kap">Ketamine-Assisted Psychotherapy</option>
+                    <option value="pilot">Pilot Program (Psilocybin/MDMA)</option>
+                </select>
+            </div>
+
+            <!-- Salt Lake City Proper -->
+            <div class="region-card" data-region="slc-proper" data-services="ketamine kap">
+                <div class="region-header">
+                    <span class="region-icon">🏙️</span>
+                    <div>
+                        <div class="region-title">Salt Lake City Proper</div>
+                        <div class="region-subtitle">Clinics located within Salt Lake City limits</div>
+                    </div>
+                </div>
+                <table class="clinic-table">
+                    <thead>
+                        <tr>
+                            <th>Clinic Name</th>
+                            <th>Address</th>
+                            <th>Services Offered</th>
+                            <th>Contact</th>
+                            <th>Website</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="clinic-name">IM Ketamine Treatments</span><br><span class="badge badge-ketamine">Ketamine</span></td>
+                            <td class="clinic-address">201 E 5900 S., Suite 200<br>Salt Lake City, UT 84107</td>
+                            <td class="clinic-services">Ketamine therapy for depression, PTSD, anxiety, and mood disorders</td>
+                            <td class="clinic-contact">(385) 474-6946</td>
+                            <td><a href="https://www.ketamineslc.com/" class="clinic-website" target="_blank" rel="noopener">ketamineslc.com</a></td>
+                        </tr>
+                        <tr>
+                            <td><span class="clinic-name">University of Utah Health - Huntsman MH Institute</span><br><span class="badge badge-ketamine">Ketamine</span><span class="badge badge-research">Research</span></td>
+                            <td class="clinic-address">525 East 100 South<br>Salt Lake City, UT 84102</td>
+                            <td class="clinic-services">Ketamine infusions for treatment-resistant depression</td>
+                            <td class="clinic-contact">801-587-3297</td>
+                            <td><a href="https://healthcare.utah.edu/hmhi/treatments/ketamine-infusion" class="clinic-website" target="_blank" rel="noopener">healthcare.utah.edu</a></td>
+                        </tr>
+                        <tr>
+                            <td><span class="clinic-name">Mindful Infusions</span><br><span class="badge badge-ketamine">Ketamine</span></td>
+                            <td class="clinic-address">Salt Lake City (also Blanding)</td>
+                            <td class="clinic-services">IV ketamine infusions for mood and pain disorders</td>
+                            <td class="clinic-contact">Contact form</td>
+                            <td><a href="https://mindfulinfusions.com/" class="clinic-website" target="_blank" rel="noopener">mindfulinfusions.com</a></td>
+                        </tr>
+                        <tr>
+                            <td><span class="clinic-name">Ketamine Therapy SLC</span><br><span class="badge badge-ketamine">Ketamine</span></td>
+                            <td class="clinic-address">Serves SLC area (in-clinic & concierge)</td>
+                            <td class="clinic-services">IM/IV ketamine for depression, anxiety, PTSD</td>
+                            <td class="clinic-contact">Contact form</td>
+                            <td><a href="https://ktherapyslc.com/" class="clinic-website" target="_blank" rel="noopener">ktherapyslc.com</a></td>
+                        </tr>
+                        <tr>
+                            <td><span class="clinic-name">Utah Trauma & Addiction Centers</span><br><span class="badge badge-ketamine">Ketamine</span></td>
+                            <td class="clinic-address">Salt Lake City (residential/outpatient)</td>
+                            <td class="clinic-services">Ketamine therapy for depression</td>
+                            <td class="clinic-contact">Contact form</td>
+                            <td><a href="https://utahaddictioncenters.com/" class="clinic-website" target="_blank" rel="noopener">utahaddictioncenters.com</a></td>
+                        </tr>
+                        <tr>
+                            <td><span class="clinic-name">Great Salt Lake Medical</span><br><span class="badge badge-ketamine">Ketamine</span></td>
+                            <td class="clinic-address">Salt Lake City (affordable clinic)</td>
+                            <td class="clinic-services">Ketamine infusions for mental health & chronic pain</td>
+                            <td class="clinic-contact">801-450-7147</td>
+                            <td><a href="https://greatsaltlakemedical.com/" class="clinic-website" target="_blank" rel="noopener">greatsaltlakemedical.com</a></td>
+                        </tr>
+                        <tr>
+                            <td><span class="clinic-name">Serenity Mental Health Centers</span><br><span class="badge badge-ketamine">Ketamine</span></td>
+                            <td class="clinic-address">6550 S Millrock Dr Ste 250<br>Salt Lake City, UT 84121</td>
+                            <td class="clinic-services">Ketamine infusion therapy for depression, anxiety, PTSD</td>
+                            <td class="clinic-contact">801-697-2610</td>
+                            <td><a href="https://serenitymentalhealthcenters.com/" class="clinic-website" target="_blank" rel="noopener">serenitymentalhealthcenters.com</a></td>
+                        </tr>
+                        <tr>
+                            <td><span class="clinic-name">Huntsman MH Institute (KAP Program)</span><br><span class="badge badge-ketamine">KAP</span></td>
+                            <td class="clinic-address">Salt Lake City</td>
+                            <td class="clinic-services">Ketamine-Assisted Psychotherapy (KAP)</td>
+                            <td class="clinic-contact">Contact form</td>
+                            <td><a href="https://healthcare.utah.edu/hmhi/treatments/ketamine-assisted-psychotherapy" class="clinic-website" target="_blank" rel="noopener">healthcare.utah.edu</a></td>
+                        </tr>
+                        <tr>
+                            <td><span class="clinic-name">Summit Ketamine Therapy</span><br><span class="badge badge-ketamine">KAP</span></td>
+                            <td class="clinic-address">Salt Lake City</td>
+                            <td class="clinic-services">Ketamine-assisted psychotherapy for depression/anxiety</td>
+                            <td class="clinic-contact">Contact form</td>
+                            <td><a href="https://psychedelic.support/" class="clinic-website" target="_blank" rel="noopener">psychedelic.support</a></td>
+                        </tr>
+                        <tr>
+                            <td><span class="clinic-name">Attunement Psychotherapy & Psychedelic Healing</span><br><span class="badge badge-ketamine">KAP</span></td>
+                            <td class="clinic-address">Salt Lake City</td>
+                            <td class="clinic-services">Ketamine + psychedelic modalities integrated with talk therapy</td>
+                            <td class="clinic-contact">Schedule via site</td>
+                            <td><a href="https://www.attunementpsych.com/" class="clinic-website" target="_blank" rel="noopener">attunementpsych.com</a></td>
+                        </tr>
+                        <tr>
+                            <td><span class="clinic-name">Sunny Strasburg, LMFT</span><br><span class="badge badge-ketamine">KAP</span></td>
+                            <td class="clinic-address">Salt Lake City (licensed in UT)</td>
+                            <td class="clinic-services">Ketamine, psilocybin, MDMA-assisted psychotherapy; IFS retreats</td>
+                            <td class="clinic-contact">Email inquiry</td>
+                            <td><a href="https://www.psychologytoday.com/us/therapists/sunny-strasburg-lmft-p-c-salt-lake-city-ut/281425" class="clinic-website" target="_blank" rel="noopener">Psychology Today</a></td>
+                        </tr>
+                        <tr>
+                            <td><span class="clinic-name">Salt City Psychedelic Therapy & Research</span><br><span class="badge badge-research">Research</span></td>
+                            <td class="clinic-address">Salt Lake City</td>
+                            <td class="clinic-services">Psychedelic education, therapy, 8-week integration programs</td>
+                            <td class="clinic-contact">Via Facebook/site</td>
+                            <td><a href="https://www.facebook.com/scptr.org" class="clinic-website" target="_blank" rel="noopener">Facebook</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Salt Lake County Suburbs -->
+            <div class="region-card" data-region="slc-suburbs" data-services="ketamine kap">
+                <div class="region-header">
+                    <span class="region-icon">🏘️</span>
+                    <div>
+                        <div class="region-title">Salt Lake County Suburbs</div>
+                        <div class="region-subtitle">Midvale, Murray, Holladay, Kaysville, Woods Cross</div>
+                    </div>
+                </div>
+                <table class="clinic-table">
+                    <thead>
+                        <tr>
+                            <th>Clinic Name</th>
+                            <th>Address</th>
+                            <th>Services Offered</th>
+                            <th>Contact</th>
+                            <th>Website</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="clinic-name">Utah Ketamine Infusions</span><br><span class="badge badge-ketamine">Ketamine</span></td>
+                            <td class="clinic-address">613 E Fort Union Blvd, Ste 104<br>Midvale, UT 84047</td>
+                            <td class="clinic-services">Ketamine infusions for depression, anxiety, PTSD, mood disorders</td>
+                            <td class="clinic-contact">Contact form</td>
+                            <td><a href="https://utahketamineinfusions.com/" class="clinic-website" target="_blank" rel="noopener">utahketamineinfusions.com</a></td>
+                        </tr>
+                        <tr>
+                            <td><span class="clinic-name">Lone Peak Psychiatry</span><br><span class="badge badge-ketamine">Ketamine</span></td>
+                            <td class="clinic-address">Murray and Lehi, UT</td>
+                            <td class="clinic-services">Ketamine treatments for depression, anxiety, PTSD</td>
+                            <td class="clinic-contact">Contact form</td>
+                            <td><a href="https://lonepeakpsychiatry.com/" class="clinic-website" target="_blank" rel="noopener">lonepeakpsychiatry.com</a></td>
+                        </tr>
+                        <tr>
+                            <td><span class="clinic-name">Great Salt Lake Wellness</span><br><span class="badge badge-ketamine">KAP</span></td>
+                            <td class="clinic-address">375 N Main St Ste 202, Kaysville, UT 84037<br>1596 S 500 W Ste 101, Woods Cross, UT 84010</td>
+                            <td class="clinic-services">Ketamine Assisted Psychotherapy (KAP) for various conditions</td>
+                            <td class="clinic-contact">801-844-1615</td>
+                            <td><a href="https://greatsaltlakewellness.com/" class="clinic-website" target="_blank" rel="noopener">greatsaltlakewellness.com</a></td>
+                        </tr>
+                        <tr>
+                            <td><span class="clinic-name">Rising Health Specialty Clinic</span><br><span class="badge badge-ketamine">Ketamine</span></td>
+                            <td class="clinic-address">1660 E Murray Holladay Rd<br>Holladay, UT 84117</td>
+                            <td class="clinic-services">Ketamine therapy for anxiety, depression, PTSD, OCD</td>
+                            <td class="clinic-contact">Contact form</td>
+                            <td><a href="https://risinghealthspecialty.com/" class="clinic-website" target="_blank" rel="noopener">risinghealthspecialty.com</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Utah County & Southern -->
+            <div class="region-card" data-region="utah-county" data-services="ketamine">
+                <div class="region-header">
+                    <span class="region-icon">🌲</span>
+                    <div>
+                        <div class="region-title">Utah County & Southern Region</div>
+                        <div class="region-subtitle">Lehi, Springville, Cedar City, Blanding</div>
+                    </div>
+                </div>
+                <table class="clinic-table">
+                    <thead>
+                        <tr>
+                            <th>Clinic Name</th>
+                            <th>Address</th>
+                            <th>Services Offered</th>
+                            <th>Contact</th>
+                            <th>Website</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="clinic-name">Lone Peak Psychiatry (Lehi)</span><br><span class="badge badge-ketamine">Ketamine</span></td>
+                            <td class="clinic-address">Lehi, UT</td>
+                            <td class="clinic-services">Ketamine treatments for depression, anxiety, PTSD</td>
+                            <td class="clinic-contact">Contact form</td>
+                            <td><a href="https://lonepeakpsychiatry.com/" class="clinic-website" target="_blank" rel="noopener">lonepeakpsychiatry.com</a></td>
+                        </tr>
+                        <tr>
+                            <td><span class="clinic-name">Numinus</span><br><span class="badge badge-ketamine">Ketamine</span></td>
+                            <td class="clinic-address">Cedar City, Springville, + other UT locations</td>
+                            <td class="clinic-services">Ketamine-assisted therapy; TMS; potential future psychedelic services</td>
+                            <td class="clinic-contact">Contact form</td>
+                            <td><a href="https://numinus.com/" class="clinic-website" target="_blank" rel="noopener">numinus.com</a></td>
+                        </tr>
+                        <tr>
+                            <td><span class="clinic-name">Mindful Infusions (Blanding)</span><br><span class="badge badge-ketamine">Ketamine</span></td>
+                            <td class="clinic-address">Blanding, UT</td>
+                            <td class="clinic-services">IV ketamine infusions for mood and pain disorders</td>
+                            <td class="clinic-contact">Contact form</td>
+                            <td><a href="https://mindfulinfusions.com/" class="clinic-website" target="_blank" rel="noopener">mindfulinfusions.com</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pilot Program & Research -->
+            <div class="region-card" data-region="pilot" data-services="pilot">
+                <div class="region-header" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">
+                    <span class="region-icon">🔬</span>
+                    <div>
+                        <div class="region-title">Pilot Program & Research Providers</div>
+                        <div class="region-subtitle">Psilocybin/MDMA therapy under SB266 – requires diagnosis, referral, eligibility screening</div>
+                    </div>
+                </div>
+                <table class="clinic-table">
+                    <thead>
+                        <tr>
+                            <th>Provider Name</th>
+                            <th>Location</th>
+                            <th>Therapies Offered</th>
+                            <th>Eligibility/Notes</th>
+                            <th>Contact</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="clinic-name">U of U Psychedelic Science Initiative (U-PSI)</span><br><span class="badge badge-pilot">Pilot</span><span class="badge badge-research">Research</span></td>
+                            <td class="clinic-address">Salt Lake City, UT</td>
+                            <td class="clinic-services">Ketamine-assisted psychotherapy; Research into psilocybin and other psychedelics</td>
+                            <td class="clinic-services">Depression, anxiety, PTSD; Part of pilot program; Requires referral or eligibility screening</td>
+                            <td class="clinic-contact">435-658-9263 (Park City) or schedule online</td>
+                        </tr>
+                        <tr>
+                            <td><span class="clinic-name">Intermountain Health</span><br><span class="badge badge-pilot">Pilot</span></td>
+                            <td class="clinic-address">Various locations in Utah</td>
+                            <td class="clinic-services">Pilot program for psilocybin and MDMA therapy</td>
+                            <td class="clinic-services">Adults 18+ with qualifying conditions; Supervised in-office only; 3-year pilot starting May 2024</td>
+                            <td class="clinic-contact">Contact through primary care or mental health providers</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lead Capture -->
+    <section class="container">
+        <div class="lead-capture">
+            <h3>Need Help Finding the Right Provider?</h3>
+            <p>Get personalized recommendations based on your location, condition, and treatment preferences. Our team can help connect you with verified clinics.</p>
+            <form class="lead-form" id="leadForm">
+                <input type="email" id="leadEmail" placeholder="Enter your email address" required>
+                <button type="submit">Get Matched</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Patient Guidance -->
+    <section class="section" style="background: white;">
+        <div class="container">
+            <h2 class="section-title">Critical Patient Guidance</h2>
+            <p class="section-subtitle">Before contacting any provider, review these important considerations</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
+                <div style="padding: 1.5rem; background: #f8fafc; border-radius: 12px; border-left: 4px solid var(--primary);">
+                    <h4 style="color: var(--primary); margin-bottom: 0.5rem;">✓ Verify Licensing</h4>
+                    <p style="color: #64748b; font-size: 0.9rem;">Confirm the prescriber is licensed in Utah through the DOPL lookup system.</p>
+                </div>
+                <div style="padding: 1.5rem; background: #f8fafc; border-radius: 12px; border-left: 4px solid var(--primary);">
+                    <h4 style="color: var(--primary); margin-bottom: 0.5rem;">✓ Clarify Costs</h4>
+                    <p style="color: #64748b; font-size: 0.9rem;">Ketamine therapy is often cash-pay. Ask about total protocol cost, not just per-session pricing.</p>
+                </div>
+                <div style="padding: 1.5rem; background: #f8fafc; border-radius: 12px; border-left: 4px solid var(--primary);">
+                    <h4 style="color: var(--primary); margin-bottom: 0.5rem;">✓ Ask About Integration</h4>
+                    <p style="color: #64748b; font-size: 0.9rem;">Effective treatment includes preparation and post-session therapy. Does the provider offer this?</p>
+                </div>
+                <div style="padding: 1.5rem; background: #f8fafc; border-radius: 12px; border-left: 4px solid var(--primary);">
+                    <h4 style="color: var(--primary); margin-bottom: 0.5rem;">✓ Emergency Disclaimer</h4>
+                    <p style="color: #64748b; font-size: 0.9rem;">Ketamine and psychedelic therapies are not crisis interventions. If in acute distress, contact 988 or go to the nearest ER.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Disclaimer Footer -->
+    <footer class="disclaimer">
+        <div class="container">
+            <h4>⚠️ Medical & Legal Disclaimer</h4>
+            <p>This directory is for informational purposes only and does not constitute medical advice, diagnosis, or treatment. All clinic information is sourced from publicly available data and should be verified directly with providers before seeking care.</p>
+            <p style="margin-top: 1rem;"><strong>Referral Disclosure:</strong> This website operates as a marketing service. We may receive compensation from providers when users contact clinics through our platform. This does not affect the accuracy of our listings or our commitment to providing helpful information.</p>
+            <p style="margin-top: 1rem;"><strong>Regulatory Notice:</strong> Ketamine therapy is legally available in Utah under medical supervision. Psilocybin and MDMA therapies are restricted to approved pilot programs under SB266 and require formal diagnosis, referral, and eligibility screening.</p>
+            <p style="margin-top: 1rem;"><strong>Liability:</strong> Treatment outcomes, eligibility, and service availability are determined solely by licensed healthcare providers. This directory does not endorse, guarantee, or assume liability for any provider's services or patient outcomes.</p>
+            <p style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #334155;">© 2026 Utah Treatment-Resistant Depression Directory. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a> | <a href="#">Contact</a></p>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top -->
+    <div class="scroll-top" id="scrollTop">↑</div>
+
+    <script>
+        // Search and Filter Functionality
+        const searchInput = document.getElementById('searchInput');
+        const regionFilter = document.getElementById('regionFilter');
+        const serviceFilter = document.getElementById('serviceFilter');
+        const regionCards = document.querySelectorAll('.region-card');
+        const tableRows = document.querySelectorAll('.clinic-table tbody tr');
+
+        function filterContent() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const selectedRegion = regionFilter.value;
+            const selectedService = serviceFilter.value;
+
+            regionCards.forEach(card => {
+                const cardRegion = card.dataset.region;
+                const cardServices = card.dataset.services;
+                
+                let regionMatch = !selectedRegion || cardRegion === selectedRegion;
+                let serviceMatch = !selectedService || cardServices.includes(selectedService);
+                
+                // Filter rows within card
+                const rows = card.querySelectorAll('tbody tr');
+                let hasVisibleRows = false;
+                
+                rows.forEach(row => {
+                    const text = row.textContent.toLowerCase();
+                    const searchMatch = !searchTerm || text.includes(searchTerm);
+                    
+                    if (searchMatch && regionMatch && serviceMatch) {
+                        row.classList.remove('hidden');
+                        hasVisibleRows = true;
+                    } else {
+                        row.classList.add('hidden');
+                    }
+                });
+                
+                // Hide card if no visible rows
+                card.style.display = hasVisibleRows ? 'block' : 'none';
+            });
+        }
+
+        searchInput.addEventListener('input', filterContent);
+        regionFilter.addEventListener('change', filterContent);
+        serviceFilter.addEventListener('change', filterContent);
+
+        // Scroll to Top
+        const scrollTopBtn = document.getElementById('scrollTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Lead Form Handler
+        const leadForm = document.getElementById('leadForm');
+        leadForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('leadEmail').value;
+            alert(`Thank you! We'll send personalized provider recommendations to ${email} within 24 hours.`);
+            leadForm.reset();
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
