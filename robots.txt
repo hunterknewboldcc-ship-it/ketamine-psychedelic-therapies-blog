@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://hunterknewboldcc-ship-it.github.io/ketamine-psychedelic-therapies-blog/sitemap.xml
