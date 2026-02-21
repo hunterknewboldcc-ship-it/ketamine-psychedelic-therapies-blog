@@ -1,0 +1,9 @@
+title: Ketamine & Psychedelic Therapies Blog
+description: Utah-focused alternative mental health resources (West Jordan/Magna emphasis)
+baseurl: "/ketamine-psychedelic-therapies-blog"  # If repo-named subdomain
+url: "https://hunterknewboldcc-ship-it.github.io"
+permalink: /:title/  # For clean URLs
+markdown: kramdown
+plugins:
+  - jekyll-seo-tag  # For SEO
+  - jekyll-sitemap
